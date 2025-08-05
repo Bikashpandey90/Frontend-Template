@@ -1,0 +1,124 @@
+// import { Models } from "appwrite";
+
+import Loader from "@/components/Loader/loader";
+import GridPostList from "@/components/GridPostList/gridpost";
+// import { useGetCurrentUser } from "@/lib/react-query/queries";
+
+const Saved = () => {
+  // const { data: currentUser } = useGetCurrentUser();
+
+  const currentUser = {
+    name: "Bikash Pandey",
+    save: [
+      {
+        $id: "1",
+        caption: "Sample post caption",
+        imageUrl: "/assets/sample-image.jpg",
+        imageId: "img1",
+        location: "New York",
+        tags: ["react", "typescript"],
+        $createdAt: new Date().toISOString(),
+        creator: {
+          $id: "user1",
+          name: "John Doe",
+          imageUrl: "/assets/icons/profile-placeholder.svg",
+        },
+      },
+      {
+        $id: "1",
+        caption: "Sample post caption",
+        imageUrl: "/assets/sample-image.jpg",
+        imageId: "img1",
+        location: "New York",
+        tags: ["react", "typescript"],
+        $createdAt: new Date().toISOString(),
+        creator: {
+          $id: "user1",
+          name: "John Doe",
+          imageUrl: "/assets/icons/profile-placeholder.svg",
+        },
+      },
+      {
+        $id: "1",
+        caption: "Sample post caption",
+        imageUrl: "/assets/sample-image.jpg",
+        imageId: "img1",
+        location: "New York",
+        tags: ["react", "typescript"],
+        $createdAt: new Date().toISOString(),
+        creator: {
+          $id: "user1",
+          name: "John Doe",
+          imageUrl: "/assets/icons/profile-placeholder.svg",
+        },
+      },
+      {
+        $id: "1",
+        caption: "Sample post caption",
+        imageUrl: "/assets/sample-image.jpg",
+        imageId: "img1",
+        location: "New York",
+        tags: ["react", "typescript"],
+        $createdAt: new Date().toISOString(),
+        creator: {
+          $id: "user1",
+          name: "John Doe",
+          imageUrl: "/assets/icons/profile-placeholder.svg",
+        },
+      },
+      {
+        $id: "1",
+        caption: "Sample post caption",
+        imageUrl: "/assets/sample-image.jpg",
+        imageId: "img1",
+        location: "New York",
+        tags: ["react", "typescript"],
+        $createdAt: new Date().toISOString(),
+        creator: {
+          $id: "user1",
+          name: "John Doe",
+          imageUrl: "/assets/icons/profile-placeholder.svg",
+        },
+      }
+    ]
+
+
+  }
+  const savePosts = currentUser?.save
+    .map((savePost: any) => ({
+      ...savePost.post,
+      creator: {
+        imageUrl: savePost.creator.imageUrl || '',
+      },
+    }))
+    .reverse();
+
+  return (
+    <div className="saved-container">
+      <div className="flex gap-2 w-full max-w-5xl">
+        <img
+          src="/assets/icons/save.svg"
+          width={36}
+          height={36}
+          alt="edit"
+          className="invert-white"
+        />
+        <h2 className="h3-bold md:h2-bold text-left w-full">Saved Posts</h2>
+      </div>
+
+      {!currentUser ? (
+        <Loader />
+      ) : (
+        <ul className="w-full flex justify-center max-w-5xl gap-9">
+          {savePosts.length === 0 ? (
+            <p className="text-light-4">No available posts</p>
+          ) : (
+            <GridPostList posts={savePosts} showStats={false} />
+          )}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default Saved;
